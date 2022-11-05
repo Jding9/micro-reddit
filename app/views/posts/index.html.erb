@@ -1,1 +1,46 @@
 <h1>Posts will show up below!</h>
+
+    <% if user_signed_in? %>
+
+        <p>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        </p>
+
+        <p>
+            <%= link_to "Edit Profile", edit_user_registration_path %>
+        </p>
+
+        <li>
+            <%= link_to "New Post", new_post_path %>
+        </li>
+
+        <p> 
+            You are currently logged in as User number:
+            <%= current_user.id %>
+            <%= current_user.email %>
+        </p>
+
+    <% else %>
+
+        <li>
+            <%= link_to "Sign Up", new_user_registration_path %>
+        </li>
+
+        <li>
+            <%= link_to "Sign In", new_user_session_path %>
+        </li>
+
+    <% end %>
+
+
+
+<ul>
+    <% @posts.each do |post| %>
+        <li>
+            <%= link_to post.title, post %>
+            <% if user_signed_in? %>
+                <p>Created by user <%= post.user_id %></p>
+            <% end %>
+        </li>
+    <% end %>
+</ul>

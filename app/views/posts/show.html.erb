@@ -1,0 +1,9 @@
+<h1><%= @post.title %></h1>
+
+<p><%= @post.body %></p>
+
+<% if user_signed_in? %>
+
+<p>This post was submitted by user number <%= @post.user_id %> </p>
+
+<% end %>

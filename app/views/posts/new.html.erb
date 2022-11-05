@@ -1,0 +1,38 @@
+<h1>Create a New Post!</h1>
+
+<%= form_with model: @post do |form| %>
+    <div>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+        <% @post.errors.full_messages_for(:title).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+
+    <br>
+
+    <div>
+        <%= form.label :Message %><br>
+        <%= form.text_field :body %>
+        <% @post.errors.full_messages_for(:body).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+
+    <br>
+
+    <div>
+        <%= form.number_field :user_id, value: current_user.id, type: :hidden %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+
+    <div>
+        <p>Logged in as User_Id</p>
+        <%= current_user.id %>
+        <%= current_user.email %>
+    </div>
+
+<% end %>
